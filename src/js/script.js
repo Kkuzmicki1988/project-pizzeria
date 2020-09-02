@@ -163,23 +163,24 @@
           if(optionSelected && !option.default){
             
             /* add price of option to variable price */
-            
+            price += option.price;
             console.log(price);
           }
           /* END IF: if option is selected and option is not default */
           /* START ELSE IF: if option is not selected and option is default */
-            
+          if(!optionSelected && option.default){  
             /* deduct price of option from price */
+            price -= option.price;
           }
           /* END ELSE IF: if option is not selected and option is default */
         }
         /* END LOOP: for each optionId in param.options */
       }
-      /* END LOOP: for each paramId in thisProduct.data.params */
-      
+      /* END LOOP: for each paramId in thisProduct.data.params */  
       /* set the contents of thisProduct.priceElem to be the value of variable price */
-   }
-  
+      thisProduct.priceElem.innerHTML = price;
+    }
+  }
   const app = {
     initMenu: function(){
       const thisApp = this;
