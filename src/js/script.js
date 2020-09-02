@@ -89,28 +89,17 @@
       
         /* prevent default action for event */
         event.preventDefault();
-
-        /* toggle active class on element of thisProduct */
-        const activeClass = thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
-        console.log(thisProduct);
         
-        /* find all active products */
-        const activeProducts = thisProduct.element.querySelectorAll(activeClass);
-        console.log(activeProducts);
+        /* find active product */
+        const activeProduct = document.querySelector('.product.active');
+        console.log(activeProduct);
         
-        /* START LOOP: for each active product */
-        for(let activeProduct of activeProducts){
-          console.log(activeProduct);
-          
-          /* START: if the active product isn't the element of thisProduct */
-          if(activeProduct != thisProduct.element){
-            
-            /* remove class active for the active product */
-          } else {
-            activeProduct.classList.remove('active');
-          
-          }/* END: if the active product isn't the element of thisProduct */
-        }/* END LOOP: for each active product */
+        /* if the active product isn't the element of thisProduct */
+        if(activeProduct && activeProduct != thisProduct.element) activeProduct.classList.remove('active');
+        
+        /* remove class active for the active product */
+        thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
+        
       });/* END: click event listener to trigger */
     }
   }
