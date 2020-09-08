@@ -137,8 +137,8 @@
     }
     processOrder(){
       const thisProduct = this;
-      console.log('processOrder');
-      
+      //console.log('processOrder');
+      thisProduct.params = {};
       /* read all data from the form (using utils.serializeFormToObject) and save it to const formData */
       const formData = utils.serializeFormToObject(thisProduct.form);
       //console.log('formData', formData);  
@@ -174,24 +174,28 @@
             price -= option.price;
           }
           /* END ELSE IF: if option is not selected and option is default */
-        
-          /*  */
-          const imageWrapper = thisProduct.element.querySelector('.product__images');
-          console.log(imageWrapper);
-          if(optionSelected && !option.default){  
-            for(let image in imageWrapper){
-              image.classList.add('active');
-              console.log(imageWrapper);
+          /* images selector  */
+          const imagesClass = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
+          if (optionSelected) {
+            if (!thisProduct.params[paramId]) {
+              thisProduct.params[paramId] = {
+                label: param.label,
+                options: {},
+              };
+            }
+            thisProduct.params[paramId].options[optionId] = option.label;
+
+            for (let singleClass of imagesClass) {
+              singleClass.classList.add(classNames.menuProduct.imageVisible);
             }
           } else {
-            for(let image in imageWrapper){
-              image.classList.remove('active');
+            for (let singleClass of imagesClass) {
+              singleClass.classList.remove(classNames.menuProduct.imageVisible);
             }
           }
-        }
-        /* END LOOP: for each optionId in param.options */
-      }
-      /* END LOOP: for each paramId in thisProduct.data.params */  
+        } /* END LOOP: for each optionId in param.options */
+      
+      }/* END LOOP: for each paramId in thisProduct.data.params */  
       /* set the contents of thisProduct.priceElem to be the value of variable price */
       thisProduct.priceElem.innerHTML = price;
     }
