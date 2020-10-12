@@ -1,3 +1,4 @@
+
 /* global Handlebars, utils, dataSource */ // eslint-disable-line no-unused-vars
 
 {
@@ -184,7 +185,7 @@
       thisProduct.params = {};
       /* read all data from the form (using utils.serializeFormToObject) and save it to const formData */
       const formData = utils.serializeFormToObject(thisProduct.form);
-      //console.log('formData', formData);  
+      //console.log('formData', formData);
 
       /* set variable price to equal thisProduct.data.price */
       thisProduct.params = {};
@@ -227,7 +228,7 @@
                 options: {},
               };
             }
-            
+
             if(!thisProduct.params[paramId]){
               thisProduct.params[paramId] = {
                 label: param.label,
@@ -251,7 +252,7 @@
       //price *= thisProduct.amountWidget.value;
       thisProduct.priceSingle = price;
       thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
-      
+
       /* set the contents of thisProduct.priceElem to be the value of variable price */
       //thisProduct.priceElem.innerHTML = price;
       thisProduct.priceElem.innerHTML = thisProduct.price;
@@ -335,7 +336,6 @@
       const thisCart = this;
 
       thisCart.products = [];
-
       thisCart.getElements(element);
       thisCart.initActions();
       console.log('new Cart', thisCart);
@@ -345,14 +345,13 @@
       const thisCart = this;
 
       thisCart.dom = {};
-      thisCart.dom.productList = {};
       thisCart.dom.wrapper = element;
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
-      
+      thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
     }
+
     initActions() {
       const thisCart = this;
-
       thisCart.dom.toggleTrigger.addEventListener('click', function(){
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
@@ -360,12 +359,13 @@
 
     add(menuProduct){
       const thisCart = this;
-      const generatedHTML = templates.menuProduct(thisCart.menuProduct);
-
+      const generatedHTML = templates.cartProduct(menuProduct);
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
 
       thisCart.dom.productList.appendChild(generatedDOM);
-      console.log('adding product', menuProduct); 
+      thisCart.products.push(thisProduct);
+
+      console.log('adding product', menuProduct);
     }
   }
 
@@ -410,3 +410,4 @@
   app.init();
   app.initCart();
 }
+
