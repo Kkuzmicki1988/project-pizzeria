@@ -120,13 +120,13 @@
     getElements() {
       const thisProduct = this;
 
-      thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
-      thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
-      thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
-      thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
-      thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
-      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
-      thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
+      thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable); console.log(thisProduct.accordionTrigger);
+      thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form); console.log(thisProduct.form);
+      thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs); console.log(thisProduct.formInputs);
+      thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton); console.log(thisProduct.cartButton);
+      thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem); console.log(thisProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper); console.log(thisProduct.imageWrapper);
+      thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget); console.log(thisProduct.amountWidgetElem);
     }
 
     initAccordion() {
@@ -336,9 +336,10 @@
       const thisCart = this;
 
       thisCart.products = [];
+      //console.log(thisCart.products);
       thisCart.getElements(element);
       thisCart.initActions();
-      console.log('new Cart', thisCart);
+      //console.log('new Cart', thisCart);
     }
 
     getElements(element) {
@@ -363,10 +364,10 @@
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
 
       thisCart.dom.productList.appendChild(generatedDOM);
-      thisCart.products.push(menuProduct);
-      console.log('thisCart.products', thisCart.products);
+      thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
+      //console.log('thisCart.products', thisCart.products);
 
-      console.log('adding product', menuProduct);
+      //console.log('adding product', menuProduct);
     }
   }
 
@@ -376,15 +377,16 @@
 
       thisCartProduct.id = menuProduct.id;
       thisCartProduct.name = menuProduct.name;
-      thisCartProduct.price = menuProduct.price;
+      thisCartProduct.price = menuProduct.priceSingle*menuProduct.value; console.log(thisCartProduct.price);
       thisCartProduct.priceSingle = menuProduct.priceSingle;
-      thisCartProduct.amount = menuProduct.amount;
+      thisCartProduct.amount = menuProduct.value;
       thisCartProduct.params = JSON.parse(JSON.stringify(menuProduct.params));
       
       
       thisCartProduct.getElements(element);
-      console.log('newCartProduct', thisCartProduct);
-      console.log('productData', menuProduct);
+      thisCartProduct.initAmountWidget();
+      //console.log('newCartProduct', thisCartProduct);
+      //console.log('productData', menuProduct);
     }
 
     getElements(element){
@@ -394,12 +396,19 @@
 
       thisCartProduct.dom.wrapper = element;
       thisCartProduct.dom.amountWidget = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.amountWidget);
-      thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price);
+      thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price); console.log(thisCartProduct.dom.price);
       thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
       thisCartProduct.dom.remove =thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
     }
-  }
 
+    initAmountWidget() {
+      const thisCardProduct = this;
+      thisCardProduct.amountWidget = new AmountWidget(thisCardProduct.cartButton);
+      thisCardProduct.thisProduct.cartButton.addEventListener('updated', function () {
+        //thisCardProduct.price();
+      }); 
+    }
+  }
   const app = {
     initMenu: function () {
       const thisApp = this;
