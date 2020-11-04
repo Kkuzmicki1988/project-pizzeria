@@ -1,3 +1,6 @@
+import {select} from '../settings.js';
+import AmountWidget from './AmountWidget.js';
+
 class CartProduct {
   constructor(menuProduct, element) {
     const thisCartProduct = this;
@@ -6,7 +9,7 @@ class CartProduct {
     thisCartProduct.price = menuProduct.priceSingle * menuProduct.amount; //console.log(thisCartProduct.price);
     thisCartProduct.priceSingle = menuProduct.priceSingle;
     thisCartProduct.amount = menuProduct.amount;
-    thisCartProduct.params = JSON.parse(JSON.stringify(menuProduct.params));
+    thisCartProduct.params = JSON.parse(JSON.stringify(menuProduct.params)); 
 
 
     thisCartProduct.getElements(element);
@@ -65,13 +68,19 @@ class CartProduct {
   }
 
   getData() {
-    //const thisCartProduct = this;
+    const thisCartProduct = this;
+    
+    const productSummary = {
+      id: thisCartProduct.id,
+      name: thisCartProduct.name,
+      amount: thisCartProduct.amount,
+      price: thisCartProduct.price,
+      params: thisCartProduct.params,
+      priceSingle: thisCartProduct.priceSingle
+    };
 
-
-
-
-
-  }
+    return productSummary;
+  }  
 }
 
 export default CartProduct;

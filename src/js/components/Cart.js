@@ -1,3 +1,7 @@
+import {settings, select, classNames, templates,} from '../settings.js';
+import utils from '../utils.js';
+import CartProduct from './CartProduct.js';
+
 class Cart {
   constructor(element) {
     const thisCart = this;
@@ -96,9 +100,9 @@ class Cart {
     const url = settings.db.url + '/' + settings.db.order;
 
     const payload = {
-      address: thisCart.dom.address,
+      address: thisCart.dom.address.value,
       totalPrice: thisCart.dom.totalPrice.innerHTML,
-      phone: thisCart.dom.phone,
+      phone: thisCart.dom.phone.value,
       totalNumber: thisCart.dom.totalNumber.innerHTML,
       subtotalPrice: thisCart.dom.subtotalPrice.innerHTML,
       deliveryFee: thisCart.deliveryFee,
