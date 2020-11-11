@@ -66,7 +66,7 @@ const app = {
 
     const bookingContainer = document.querySelector(select.containerOf.booking); console.log(bookingContainer);
 
-    thisApp.sendToClass = new Booking(bookingContainer);
+    thisApp.booking = new Booking(bookingContainer);
     console.log('thisApp.sendToClass', thisApp.sendToClass);
   },
 
