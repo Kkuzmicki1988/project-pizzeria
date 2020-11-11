@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import {settings, select} from '../settings.js';
 
 class AmountWidget {

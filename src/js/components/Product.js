@@ -1,4 +1,5 @@
-import {select, classNames, templates,} from '../settings.js';
+/* eslint-disable linebreak-style */
+import { select, classNames, templates } from '../settings.js';
 import utils from '../utils.js';
 import AmountWidget from './AmountWidget.js';
 
@@ -35,20 +36,36 @@ class Product {
   getElements() {
     const thisProduct = this;
 
-    thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
-    thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
-    thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
-    thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
-    thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
-    thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
-    thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
+    thisProduct.accordionTrigger = thisProduct.element.querySelector(
+      select.menuProduct.clickable
+    );
+    thisProduct.form = thisProduct.element.querySelector(
+      select.menuProduct.form
+    );
+    thisProduct.formInputs = thisProduct.form.querySelectorAll(
+      select.all.formInputs
+    );
+    thisProduct.cartButton = thisProduct.element.querySelector(
+      select.menuProduct.cartButton
+    );
+    thisProduct.priceElem = thisProduct.element.querySelector(
+      select.menuProduct.priceElem
+    );
+    thisProduct.imageWrapper = thisProduct.element.querySelector(
+      select.menuProduct.imageWrapper
+    );
+    thisProduct.amountWidgetElem = thisProduct.element.querySelector(
+      select.menuProduct.amountWidget
+    );
   }
 
   initAccordion() {
     const thisProduct = this;
 
     /* find the clickable trigger (the element that should react to clicking) */
-    const accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+    const accordionTrigger = thisProduct.element.querySelector(
+      select.menuProduct.clickable
+    );
     //console.log(accordionTrigger);
 
     /* START: click event listener to trigger */
@@ -63,12 +80,14 @@ class Product {
       //console.log(activeProduct);
 
       /* if the active product isn't the element of thisProduct */
-      if (activeProduct && activeProduct != thisProduct.element) activeProduct.classList.remove('active');
+      if (activeProduct && activeProduct != thisProduct.element)
+        activeProduct.classList.remove('active');
 
       /* remove class active for the active product */
-      thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
-
-    });/* END: click event listener to trigger */
+      thisProduct.element.classList.toggle(
+        classNames.menuProduct.wrapperActive
+      );
+    }); /* END: click event listener to trigger */
   }
 
   initOrderForm() {
@@ -91,7 +110,6 @@ class Product {
       thisProduct.processOrder();
       thisProduct.addToCart();
     });
-
   }
 
   processOrder() {
@@ -108,7 +126,6 @@ class Product {
     //console.log(price);
     /* START LOOP: for each paramId in thisProduct.data.params */
     for (let paramId in thisProduct.data.params) {
-
       /* save the element in thisProduct.data.params with key paramId as const param */
       const param = thisProduct.data.params[paramId];
       //console.log(param);
@@ -118,11 +135,12 @@ class Product {
         /* save the element in param.options with key optionId as const option */
         const option = param.options[optionId];
         //console.log(option);
-        const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].indexOf(optionId) > -1;
+        const optionSelected =
+          formData.hasOwnProperty(paramId) &&
+          formData[paramId].indexOf(optionId) > -1;
         //console.log(optionSelected);
         /* START IF: if option is selected and option is not default */
         if (optionSelected && !option.default) {
-
           /* add price of option to variable price */
           price += option.price;
           //console.log(price);
@@ -135,7 +153,9 @@ class Product {
         }
         /* END ELSE IF: if option is not selected and option is default */
         /* images selector  */
-        const imagesClass = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
+        const imagesClass = thisProduct.imageWrapper.querySelectorAll(
+          '.' + paramId + '-' + optionId
+        );
         if (optionSelected) {
           if (!thisProduct.params[paramId]) {
             thisProduct.params[paramId] = {
@@ -161,12 +181,12 @@ class Product {
           }
         }
       } /* END LOOP: for each optionId in param.options */
-
-    }/* END LOOP: for each paramId in thisProduct.data.params */
+    } /* END LOOP: for each paramId in thisProduct.data.params */
     /* multiply price by ammount */
     //price *= thisProduct.amountWidget.value;
     thisProduct.priceSingle = price;
-    thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
+    thisProduct.price =
+      thisProduct.priceSingle * thisProduct.amountWidget.value;
 
     /* set the contents of thisProduct.priceElem to be the value of variable price */
     //thisProduct.priceElem.innerHTML = price;
@@ -187,7 +207,7 @@ class Product {
     thisProduct.name = thisProduct.data.name;
     thisProduct.amount = thisProduct.amountWidget.value;
     //app.cart.add(thisProduct);
-    
+
     const event = new CustomEvent('add-to-cart', {
       bubbles: true,
       detail: {

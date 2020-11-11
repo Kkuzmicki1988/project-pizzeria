@@ -1,4 +1,5 @@
-import {select} from '../settings.js';
+/* eslint-disable linebreak-style */
+import { select } from '../settings.js';
 import AmountWidget from './AmountWidget.js';
 
 class CartProduct {
@@ -9,8 +10,7 @@ class CartProduct {
     thisCartProduct.price = menuProduct.priceSingle * menuProduct.amount; //console.log(thisCartProduct.price);
     thisCartProduct.priceSingle = menuProduct.priceSingle;
     thisCartProduct.amount = menuProduct.amount;
-    thisCartProduct.params = JSON.parse(JSON.stringify(menuProduct.params)); 
-
+    thisCartProduct.params = JSON.parse(JSON.stringify(menuProduct.params));
 
     thisCartProduct.getElements(element);
     thisCartProduct.initAmountWidget();
@@ -25,18 +25,29 @@ class CartProduct {
     thisCartProduct.dom = {};
 
     thisCartProduct.dom.wrapper = element;
-    thisCartProduct.dom.amountWidget = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.amountWidget);
-    thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price); //console.log(thisCartProduct.dom.price);
-    thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
-    thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
+    thisCartProduct.dom.amountWidget = thisCartProduct.dom.wrapper.querySelector(
+      select.cartProduct.amountWidget
+    );
+    thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(
+      select.cartProduct.price
+    ); //console.log(thisCartProduct.dom.price);
+    thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(
+      select.cartProduct.edit
+    );
+    thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(
+      select.cartProduct.remove
+    );
   }
 
   initAmountWidget() {
     const thisCartProduct = this;
-    thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
+    thisCartProduct.amountWidget = new AmountWidget(
+      thisCartProduct.dom.amountWidget
+    );
     thisCartProduct.dom.amountWidget.addEventListener('updated', function () {
       thisCartProduct.amount = thisCartProduct.amountWidget.value;
-      thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
+      thisCartProduct.price =
+        thisCartProduct.priceSingle * thisCartProduct.amount;
       thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
     });
   }
@@ -52,7 +63,6 @@ class CartProduct {
     });
 
     thisCartProduct.dom.wrapper.dispatchEvent(event);
-
   }
 
   initActions() {
@@ -69,18 +79,18 @@ class CartProduct {
 
   getData() {
     const thisCartProduct = this;
-    
+
     const productSummary = {
       id: thisCartProduct.id,
       name: thisCartProduct.name,
       amount: thisCartProduct.amount,
       price: thisCartProduct.price,
       params: thisCartProduct.params,
-      priceSingle: thisCartProduct.priceSingle
+      priceSingle: thisCartProduct.priceSingle,
     };
 
     return productSummary;
-  }  
+  }
 }
 
 export default CartProduct;
