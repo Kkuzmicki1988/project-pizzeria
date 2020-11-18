@@ -11,13 +11,13 @@ class Booking {
   render(html) {
     const thisBooking = this;
     
-    const generateHTML = templates.bookingWidget(); console.log(generateHTML);
+    const generateHTML = templates.bookingWidget(); 
     thisBooking.dom = {}; 
     thisBooking.dom.wrapper = html;
     thisBooking.dom.wrapper.innerHTML = generateHTML;
     thisBooking.dom.peopleAmount = document.querySelector(select.booking.peopleAmount);
     thisBooking.dom.hoursAmount = document.querySelector(select.booking.hoursAmount);
-   
+    thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper); //console.log(thisBooking.dom.datePicker);
 
   }
 
@@ -26,7 +26,8 @@ class Booking {
 
     thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
     thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
-
+    
+    thisBooking.datePicker = new AmountWidget(thisBooking.dom.datePicker);
   }
 }
 

@@ -9,8 +9,8 @@ const app = {
   initPages: function () {
     const thisApp = this;
 
-    thisApp.pages = document.querySelector(select.containerOf.pages).children; console.log(thisApp.pages);
-    thisApp.navLinks = document.querySelectorAll(select.nav.links); console.log(thisApp.navLinks);
+    thisApp.pages = document.querySelector(select.containerOf.pages).children; 
+    thisApp.navLinks = document.querySelectorAll(select.nav.links); 
     const idFromHash = window.location.hash.replace('#/', '');
     
     let pageMatchingHash = thisApp.pages[0].id;
@@ -64,10 +64,10 @@ const app = {
   initBooking: function () {
     const thisApp = this;
 
-    const bookingContainer = document.querySelector(select.containerOf.booking); console.log(bookingContainer);
+    const bookingContainer = document.querySelector(select.containerOf.booking); 
 
     thisApp.booking = new Booking(bookingContainer);
-    console.log('thisApp.sendToClass', thisApp.sendToClass);
+    //console.log('thisApp.sendToClass', thisApp.sendToClass);
   },
 
   initMenu: function () {
@@ -91,7 +91,6 @@ const app = {
         return rawResponse.json();
       })
       .then(function (parsedResponse) {
-        console.log('parsedResponse', parsedResponse);
 
         /* save parsedResponse as thisApp.data.products */
         thisApp.data.products = parsedResponse;
