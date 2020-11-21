@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+import { settings } from '../settings.js';
 
 class BaseWidget {
   constructor(wrapperElement, initialValue) {
@@ -9,7 +10,7 @@ class BaseWidget {
 
     thisWidget.correctValue = initialValue;
   }
-  
+
   get value() {
     const thisWidget = this;
 
@@ -36,17 +37,19 @@ class BaseWidget {
   }
 
   parseValue(value) {
-    return value;
+    return parseInt(value);
   }
 
-  isValid(/*value*/) {
-    return true;
+  isValid(value) {
+    return !isNaN(value)
+      && value >= settings.amountWidget.defaultMin
+      && value <= settings.amountWidget.defaultMax;
   }
 
   renderValue() {
-    //const thisWidget = this;
+    const thisWidget = this;
 
-    //thisWidget.dom.wrapper.innerHTML = thisWidget.value;
+    thisWidget.dom.wrapper.innerHTML = thisWidget.value;
   }
 
   announce() {
