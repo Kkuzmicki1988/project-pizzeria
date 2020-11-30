@@ -29,11 +29,10 @@ class HourPicker extends BaseWidget {
 
   parseValue(value) {
     
-    utils.numberToHour(value);
-    return value; /* number ? */
+    return utils.numberToHour(value);
   }
 
-  isVaild() {
+  isValid() {
     return true; 
   }
 

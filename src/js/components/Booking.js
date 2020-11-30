@@ -16,8 +16,11 @@ class Booking {
   getData() {
     const thisBooking = this;
     
-    const startDateParam = settings.db.dateStartParamKey + '=' + utils.dateToStr(thisBooking.datePicker.minDate);
-    const endDateParam = settings.db.dateEndParamKey + '=' + utils.dateToStr(thisBooking.datePicker.maxDate);
+    const minDate = new Date();
+    const maxDate = utils.addDays(utils.dateToStr(new Date()), settings.datePicker.maxDaysInFuture);
+
+    const startDateParam = settings.db.dateStartParamKey + '=' + utils.dateToStr(minDate);
+    const endDateParam = settings.db.dateEndParamKey + '=' + utils.dateToStr(maxDate);
 
     const params = {
       booking: [
@@ -172,7 +175,9 @@ class Booking {
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker); //console.log(thisBooking.hourPicker);
   
-    
+    thisBooking.dom.wrapper.addEventListener('updated', function(){
+      thisBooking.updateDOM();
+    });
   }
 }
 

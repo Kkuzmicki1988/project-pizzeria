@@ -9,7 +9,8 @@
     "sourceType": "module"
   },
   "globals": {
-    "flatpickr": true
+    "flatpickr": true,
+    "rangeSlider": true
   },
   "rules": {
     "indent": [
