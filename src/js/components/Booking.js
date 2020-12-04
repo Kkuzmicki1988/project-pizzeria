@@ -11,7 +11,7 @@ class Booking {
     thisBooking.render(bookingContainer);
     thisBooking.initWidgets();
     thisBooking.getData();
-    thisBooking.selectTable();
+    thisBooking.addTableListeners();
   }
   
   getData() {
@@ -120,6 +120,11 @@ class Booking {
 
   updateDOM() {
     const thisBooking = this;
+
+    // remove chosen class from selected table and empty tablePick
+    const tableSelected = thisBooking.dom.wrapper.querySelector(select.booking.tableSelected);
+    if(tableSelected) tableSelected.classList.remove(classNames.booking.tableChosen);
+    thisBooking.tablePick = null;
     
     thisBooking.date = thisBooking.datePicker.value;
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
@@ -153,30 +158,22 @@ class Booking {
     console.log('thisBooking.booked ', thisBooking.booked);
   }
 
-  selectTable() {
+  addTableListeners() {
     const thisBooking = this;
 
     for (let table of thisBooking.dom.tables) {
       table.addEventListener('click', function () {
-
         const tableClicked = table.getAttribute(settings.booking.tableIdAttribute);
 
         if (!table.classList.contains(classNames.booking.tableBooked)) {
-          table.classList.add(classNames.booking.tableBooked);
+          const selectedTable = thisBooking.dom.wrapper.querySelector(select.booking.tableSelected);
+          if(selectedTable) selectedTable.classList.remove(classNames.booking.tableChosen);
+          table.classList.add(classNames.booking.tableChosen);
           thisBooking.tablePick = tableClicked;
-          return;
-        }
-
-        const dateSelected = thisBooking.datePicker.value;
-        const hourSelected = utils.hourToNumber(thisBooking.hourPicker.value);
-
-
-        if (!thisBooking.booked[dateSelected][hourSelected].includes(tableClicked)) {
-          alert('Stolik niedostępny');
         } else {
-          table.classList.remove(classNames.booking.tableBooked);
-          thisBooking.tablePick = 'undefined';
+          alert('Stolik jest zajęty!');
         }
+
       });
     }
   }
