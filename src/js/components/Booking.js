@@ -188,11 +188,17 @@ class Booking {
       table: parseInt(thisBooking.tablePick),
       people: thisBooking.people,
       duration: thisBooking.duration,
-      starters: ['water', 'bread'],
+      starters: [],
       phone: thisBooking.dom.phone.value,
       address: thisBooking.dom.address.value,
     };
-
+ 
+    for (let starter of thisBooking.dom.starters) {
+      if (starter.checked === true) {
+        allReservationData.starters.push(starter.value);
+      }
+    }
+ 
 
     const url = `${settings.db.url}/${settings.db.booking}`;
 
@@ -232,6 +238,7 @@ class Booking {
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
     thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.cart.phone);
     thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.cart.address);
+    thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll(select.booking.starters);
   }
 
   initWidgets() {
