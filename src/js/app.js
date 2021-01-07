@@ -61,6 +61,12 @@ const app = {
 
   },
 
+  initHomepage: function() {
+    new Flickity( '.main-carousel', {
+      'autoPlay': true
+    });
+  },
+
   initBooking: function () {
     const thisApp = this;
 
@@ -109,6 +115,7 @@ const app = {
     console.log('settings:', settings);
     console.log('templates:', templates);
     thisApp.initPages();
+    thisApp.initHomepage();
   },
 
   initCart: function () {

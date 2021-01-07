@@ -10,7 +10,8 @@
   },
   "globals": {
     "flatpickr": true,
-    "rangeSlider": true
+    "rangeSlider": true,
+    "Flickity": true
   },
   "rules": {
     "indent": [

@@ -67,7 +67,7 @@ export const select = {
     starters: '.booking-form [type="checkbox"]',
   },
   nav: {
-    links: '.main-nav a',
+    links: '.main-nav a, #home .link',
   },
 };
 
