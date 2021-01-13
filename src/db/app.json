@@ -25,8 +25,8 @@
           "type": "radios",
           "options": {
             "latte": {
-              "label": "Latte",
-              "price": 1,
+              "label": "White Coffee",
+              "price": 5,
               "default": true
             },
             "cappuccino": {
@@ -54,11 +54,11 @@
         "<img class=\"active\" src=\"images/pizza/crust.svg\">",
         "<img class=\"active sauce-tomato\" src=\"images/pizza/tomato-sauce.svg\">",
         "<img class=\"active sauce-cream\" src=\"images/pizza/sour-cream.svg\">",
-        "<img class=\"active toppings-salami\" src=\"images/pizza/salami.svg\">",
-        "<img class=\"active toppings-olives\" src=\"images/pizza/olives.svg\">",
+        "<img class=\"active toppings-salami\" src=\"images/pizza/ham-svgrepo-com.svg\">",
+        "<img class=\"active toppings-olives\" src=\"images/pizza/pineapple-svgrepo-com.svg\">",
         "<img class=\"active toppings-redPeppers\" src=\"images/pizza/red-peppers.svg\">",
-        "<img class=\"active toppings-greenPeppers\" src=\"images/pizza/green-peppers.svg\">",
-        "<img class=\"active toppings-mushrooms\" src=\"images/pizza/mushrooms.svg\">",
+        "<img class=\"active toppings-greenPeppers\" src=\"images/pizza/prawn-svgrepo-com.svg\">",
+        "<img class=\"active toppings-mushrooms\" src=\"images/pizza/tomato-svgrepo-com.svg\">",
         "<img class=\"active toppings-basil\" src=\"images/pizza/basil.svg\">"
       ],
       "params": {
@@ -68,11 +68,11 @@
           "options": {
             "tomato": {
               "label": "Tomato",
-              "price": 0,
+              "price": 1,
               "default": true
             },
             "cream": {
-              "label": "Sour cream",
+              "label": "Garlic sauce",
               "price": 2
             }
           }
@@ -82,8 +82,8 @@
           "type": "checkboxes",
           "options": {
             "olives": {
-              "label": "Olives",
-              "price": 2,
+              "label": "Pineapple",
+              "price": 7,
               "default": true
             },
             "redPeppers": {
@@ -92,12 +92,12 @@
               "default": true
             },
             "greenPeppers": {
-              "label": "Green peppers",
+              "label": "Prawns",
               "price": 2,
               "default": true
             },
             "mushrooms": {
-              "label": "Mushrooms",
+              "label": "Tomato",
               "price": 2,
               "default": true
             },
@@ -107,7 +107,7 @@
               "default": true
             },
             "salami": {
-              "label": "Salami",
+              "label": "Ham",
               "price": 3
             }
           }
@@ -206,53 +206,53 @@
   "event": [
     {
       "id": 1,
-      "date": "2019-01-01",
+      "date": "2021-01-14",
       "hour": "12:30",
       "table": 1,
       "repeat": false,
-      "duration": 4,
+      "duration": 2,
       "ppl": 3,
       "starters": []
     },
     {
       "id": 2,
-      "date": "2019-01-01",
+      "date": "2021-01-15",
       "hour": "16:00",
       "table": 3,
       "repeat": "daily",
       "duration": 2,
       "ppl": 3,
-      "starters": ["bread", "lemonWater"]
+      "starters": ["Tea", "Beer", "Gin"]
     },
     {
       "id": 3,
-      "date": "2019-01-01",
+      "date": "2021-01-17",
       "hour": "12:00",
       "table": 3,
-      "repeat": "daily",
-      "duration": 2,
+      "repeat": false,
+      "duration": 3,
       "ppl": 3,
-      "starters": ["bread", "lemonWater"]
+      "starters": ["Beer", "Gin"]
     },
     {
       "id": 4,
-      "date": "2019-01-01",
+      "date": "2021-01-12",
       "hour": "13:00",
       "table": 2,
-      "repeat": "daily",
-      "duration": 4,
+      "repeat": false,
+      "duration": 12,
       "ppl": 3,
       "starters": []
     },
     {
       "id": 5,
-      "date": "2019-01-01",
+      "date": "2021-01-11",
       "hour": "18:00",
       "table": 2,
-      "repeat": "daily",
+      "repeat": false,
       "duration": 2,
       "ppl": 3,
-      "starters": ["lemonWater"]
+      "starters": ["Gin"]
     }
   ],
   "booking": [

@@ -94,8 +94,8 @@ export const classNames = {
 
 export const settings = {
   hours: {
-    open: 12,
-    close: 24,
+    open: 9,
+    close: 22,
   },
   amountWidget: {
     defaultValue: 1,
@@ -103,7 +103,7 @@ export const settings = {
     defaultMax: 9,
   },
   datePicker: {
-    maxDaysInFuture: 14,
+    maxDaysInFuture: 7,
   },
   cart: {
     defaultDeliveryFee: 20,
